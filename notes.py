@@ -63,6 +63,8 @@ def edit():
 
     log(contents)
 
+    os.remove(name)
+
 
 def usage():
     sys.stderr.write("usage: note [edit|search|show|args]\n")

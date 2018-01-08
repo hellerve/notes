@@ -23,8 +23,9 @@ content. After you’re done, save the file and exit. The contents of that file
 will be appended to the log, with an added date.
 
 `dump` mode—the other writing mode—will be entered by typing `notes
-<anything not starting with edit or dump>`. It will take any arguments supplied
-and dump them into your log file verbatim. This means you can use it like so:
+<anything not starting with another command name>`. It will take any arguments
+supplied and dump them into your log file verbatim. This means you can use it
+like so:
 
 ```bash
 $ notes i restarted the server and found out it has trouble rebooting on its own
