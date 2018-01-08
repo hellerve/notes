@@ -14,7 +14,7 @@ work.
 
 ## Usage
 
-`notes` has three major modes: `edit`, `show`, and `dump`.
+`notes` has four major modes: `edit`, `show`, `search/isearch`, and `dump`.
 
 The `edit` mode will be entered by typing `notes edit`, which will open your
 favorite editor as determined by the `$EDITOR` path variable—defaulting to
@@ -34,6 +34,10 @@ The prefixed date helps you localize it.
 
 The `show` mode will just dump the file as-is. Protip: use `less` or a similar
 utility to make sense of this mess.
+
+For a full-text search of your logs using regexes, use `search` mode. It is
+capable of multiline regexes as well. If you want case-insensitive matches,
+use `isearch`.
 
 <hr/>
 
