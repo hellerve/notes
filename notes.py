@@ -44,9 +44,9 @@ def search(qs, ign):
     start = offsets.start()
     end = offsets.end()
 
-    before = contents[:start-1]
+    before = contents[:start]
     before = before[before.rindex("\n"):]
-    after = contents[end+1:]
+    after = contents[end:]
     after = after[:after.index("\n")]
 
     print("{}{}{}".format(before, contents[start:end], after))
