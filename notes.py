@@ -3,7 +3,9 @@
 import os
 import re
 import sys
+import subprocess
 import tempfile
+
 
 from datetime import datetime
 
@@ -51,20 +53,32 @@ def search(qs, ign):
 
     print("{}{}{}".format(before, contents[start:end], after))
 
-
-def edit():
-    editor = os.environ.get("EDITOR", "vi")
+def edit_vim():
     f, name = tempfile.mkstemp()
+    # Can't use the file descriptor provided by tempfile.mkstemp in subprocess
+    # Thus, we close it and create a NEW file descriptor for use in subprocess.
+    os.close(f)
+    rv = subprocess.check_call(['vim', name])
 
-    os.system("{} {}".format(editor, name))
-
-    with os.fdopen(f) as f:
+    with open(name, 'r') as f:
         contents = f.read()
 
     log(contents)
-
     os.remove(name)
 
+def edit():
+    editor = os.environ.get("EDITOR", "vi")
+    if 'vim' in editor:
+        edit_vim()
+    else:
+        f, name = tempfile.mkstemp()
+        os.system("{} {}".format(editor, name))
+
+        with os.fdopen(f) as f:
+            contents = f.read()
+            log(contents)
+
+        os.remove(name)
 
 def usage():
     sys.stderr.write("usage: note [edit|search|show|args]\n")
