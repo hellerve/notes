@@ -6,9 +6,7 @@ import sys
 import subprocess
 import tempfile
 
-
 from datetime import datetime
-
 
 FILENAME = os.path.expanduser("~/.daily_log")
 
@@ -53,6 +51,7 @@ def search(qs, ign):
 
     print("{}{}{}".format(before, contents[start:end], after))
 
+
 def edit_subprocess(editor):
     f, name = tempfile.mkstemp()
     # Can't use the file descriptor provided by tempfile.mkstemp in subprocess
@@ -64,9 +63,11 @@ def edit_subprocess(editor):
     log(contents)
     os.remove(name)
 
+
 def edit():
     editor = os.environ.get("EDITOR", "vi")
     edit_subprocess(editor)
+
 
 def usage():
     sys.stderr.write("usage: note [edit|search|show|args]\n")
